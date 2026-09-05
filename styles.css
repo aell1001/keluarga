@@ -1,0 +1,623 @@
+:root {
+    --cream: #f7f0e5;
+    --paper: #fffaf2;
+    --ink: #3e3029;
+    --terracotta: #b96043;
+    --gold: #d89a54;
+    --muted: #8d796b;
+}
+
+/* =========================
+   RESET & GLOBAL
+   ========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    color: var(--ink);
+    font-family: "DM Sans", sans-serif;
+
+    background-color: #f5ede1;
+    background-image:
+        radial-gradient(
+            circle at 8% 12%,
+            rgba(216, 154, 84, 0.18) 0 90px,
+            transparent 91px
+        ),
+        radial-gradient(
+            circle at 92% 42%,
+            rgba(185, 96, 67, 0.10) 0 150px,
+            transparent 151px
+        ),
+        linear-gradient(
+            135deg,
+            rgba(255, 255, 255, 0.38) 25%,
+            transparent 25%,
+            transparent 50%,
+            rgba(255, 255, 255, 0.22) 50%,
+            rgba(255, 255, 255, 0.22) 75%,
+            transparent 75%
+        );
+
+    background-size: auto, auto, 34px 34px;
+    background-attachment: fixed;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+main {
+    position: relative;
+    isolation: isolate;
+}
+
+main::before,
+main::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 48% 52% 55% 45%;
+    pointer-events: none;
+}
+
+/* =========================
+   HEADER / NAVBAR
+   ========================= */
+
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 26px 7vw;
+
+    border-bottom: 1px solid #dfd1c0;
+}
+
+.brand {
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+.brand span,
+footer span:first-child {
+    margin-right: 8px;
+    color: var(--terracotta);
+}
+
+nav {
+    display: flex;
+    gap: 34px;
+
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+nav a:hover {
+    color: var(--terracotta);
+}
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    align-items: center;
+    gap: 9vw;
+
+    min-height: 690px;
+    padding: 100px 13vw 110px;
+
+    overflow: hidden;
+}
+
+.hero-copy {
+    position: relative;
+    z-index: 1;
+}
+
+.eyebrow {
+    margin: 0 0 20px;
+
+    color: var(--terracotta);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+}
+
+.hero h1,
+h2,
+blockquote {
+    font-family: "Playfair Display", serif;
+    font-weight: 600;
+}
+
+.hero h1 {
+    margin: 0 0 31px;
+
+    font-size: clamp(3.7rem, 7vw, 6.8rem);
+    line-height: 0.92;
+    letter-spacing: -0.05em;
+}
+
+.hero em,
+h2 em {
+    color: var(--terracotta);
+    font-style: italic;
+}
+
+.intro {
+    max-width: 390px;
+    margin-bottom: 35px;
+
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    gap: 30px;
+
+    padding: 16px 22px;
+
+    background: var(--terracotta);
+    color: #fff;
+
+    font-size: 0.8rem;
+    border-radius: 2px;
+}
+
+.button span {
+    font-size: 1.2rem;
+}
+
+/* =========================
+   PHOTO FRAME
+   ========================= */
+
+.photo-frame {
+    position: relative;
+
+    padding: 13px 13px 52px;
+
+    background: #e2d1ba;
+
+    box-shadow: 18px 22px 0 rgba(185, 96, 67, 0.12);
+
+    transform: rotate(3deg);
+}
+
+.photo-frame img,
+.gallery-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    background: #d8c7b2;
+}
+
+.hero-photo {
+    height: 440px;
+}
+
+.photo-note {
+    position: absolute;
+    bottom: 15px;
+    left: 24px;
+
+    font-family: "Playfair Display", serif;
+    font-size: 1.15rem;
+    line-height: 1.1;
+}
+
+.sun {
+    position: absolute;
+    top: 40px;
+    right: -80px;
+
+    width: 270px;
+    height: 270px;
+
+    border-radius: 50%;
+    background: #ead1a5;
+    opacity: 0.55;
+}
+
+.hero::after {
+    content: "";
+
+    position: absolute;
+    left: -210px;
+    bottom: -260px;
+
+    width: 440px;
+    height: 440px;
+
+    border: 1px solid rgba(185, 96, 67, 0.20);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 35px rgba(185, 96, 67, 0.04),
+        0 0 0 70px rgba(185, 96, 67, 0.03);
+}
+
+/* =========================
+   QUOTE SECTION
+   ========================= */
+
+.quote-section {
+    padding: 110px 15vw;
+
+    text-align: center;
+
+    background-color: rgba(255, 250, 242, 0.87);
+    background-image:
+        radial-gradient(
+            rgba(185, 96, 67, 0.11) 0.7px,
+            transparent 0.7px
+        );
+    background-size: 16px 16px;
+}
+
+.quote-section blockquote {
+    max-width: 900px;
+    margin: 0 auto 22px;
+
+    font-size: clamp(2rem, 4vw, 3.8rem);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+}
+
+.quote-credit {
+    color: var(--muted);
+    font-size: 0.76rem;
+}
+
+/* =========================
+   GALLERY
+   ========================= */
+
+.gallery-section {
+    padding: 110px 7vw;
+
+    background:
+        linear-gradient(
+            115deg,
+            rgba(255, 250, 242, 0.28),
+            rgba(245, 237, 225, 0.82) 48%,
+            rgba(255, 250, 242, 0.25)
+        );
+}
+
+.section-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+
+    margin-bottom: 48px;
+}
+
+.section-heading h2,
+.message h2 {
+    margin: 0;
+
+    font-size: clamp(2.5rem, 5vw, 4.4rem);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+}
+
+.section-heading > p {
+    margin-bottom: 7px;
+
+    color: var(--muted);
+    font-size: 0.85rem;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-rows: auto;
+    align-items: start;
+    gap: 18px;
+}
+
+.gallery-card {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+
+    margin: 0;
+}
+
+.gallery-card.tall {
+    grid-row: span 2;
+}
+
+.gallery-card.wide {
+    grid-column: span 2;
+}
+
+.gallery-card img {
+    width: 100%;
+    height: 220px;
+
+    object-fit: cover;
+    background: #e2d1ba;
+}
+
+.gallery-card.tall img {
+    height: 330px;
+    object-fit: contain;
+}
+
+.gallery-card.wide img {
+    height: 220px;
+    object-fit: contain;
+}
+
+figcaption {
+    padding-bottom: 8px;
+
+    color: var(--muted);
+    font-size: 0.75rem;
+}
+
+figcaption span {
+    margin-right: 10px;
+
+    color: var(--terracotta);
+    font-weight: 700;
+}
+
+/* =========================
+   MESSAGE SECTION
+   ========================= */
+
+.message {
+    position: relative;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 70px;
+
+    padding: 95px 13vw;
+
+    overflow: hidden;
+
+    background: var(--terracotta);
+    color: #fff;
+}
+
+.message .eyebrow {
+    color: #f7d8a9;
+}
+
+.message h2 {
+    font-size: clamp(2.4rem, 4vw, 4rem);
+}
+
+.message h2 em {
+    color: #f7d8a9;
+}
+
+.message > p {
+    align-self: end;
+
+    max-width: 350px;
+
+    color: #f7e5d2;
+    line-height: 1.8;
+}
+
+.message::after {
+    content: "";
+
+    position: absolute;
+    right: -100px;
+    bottom: -170px;
+
+    width: 340px;
+    height: 340px;
+
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 24px rgba(255, 255, 255, 0.05),
+        0 0 0 48px rgba(255, 255, 255, 0.035);
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding: 28px 7vw;
+
+    color: var(--muted);
+    font-size: 0.73rem;
+}
+
+/* Compact music control; playback starts when the browser allows it. */
+.music-player {
+    position: fixed;
+    right: 22px;
+    bottom: 22px;
+    z-index: 10;
+}
+
+.music-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 15px;
+    border: 1px solid rgba(62, 48, 41, 0.12);
+    border-radius: 999px;
+    background: rgba(255, 250, 242, 0.94);
+    color: var(--ink);
+    box-shadow: 0 8px 22px rgba(62, 48, 41, 0.14);
+    cursor: pointer;
+    font: 600 0.75rem "DM Sans", sans-serif;
+}
+
+.music-toggle:hover,
+.music-toggle.is-playing {
+    background: var(--terracotta);
+    color: #fff;
+}
+
+.music-icon {
+    min-width: 14px;
+    font-size: 0.8rem;
+}
+
+/* =========================
+   RESPONSIVE / MOBILE
+   ========================= */
+
+@media (max-width: 700px) {
+
+    /* Header */
+    .topbar {
+        padding: 20px 6vw;
+    }
+
+    nav {
+        gap: 14px;
+    }
+
+    /* Hero */
+    .hero {
+        display: block;
+
+        min-height: auto;
+        padding: 75px 9vw 90px;
+    }
+
+    .hero h1 {
+        font-size: 4rem;
+    }
+
+    .hero-photo {
+        height: 370px;
+        margin: 60px 10px 0;
+    }
+
+    /* Quote & Gallery */
+    .quote-section,
+    .gallery-section {
+        padding: 75px 8vw;
+    }
+
+    .section-heading {
+        display: block;
+    }
+
+    .section-heading > p {
+        margin-top: 25px;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+
+    .gallery-card.tall {
+        grid-row: span 2;
+    }
+
+    .gallery-card.wide {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+    .gallery-card img {
+        height: 170px;
+    }
+
+    .gallery-card.tall img {
+        height: 170px;
+    }
+
+    .gallery-card.wide img {
+        height: 210px;
+    }
+
+    /* Message */
+    .message {
+        display: block;
+
+        padding: 75px 9vw;
+    }
+
+    .message > p {
+        margin-top: 35px;
+    }
+
+    /* Footer */
+    footer {
+        flex-wrap: wrap;
+
+        padding: 24px 7vw;
+    }
+}
+
+/* GALLERY - ALBUM STYLE */
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;align-items:start}
+.gallery-card{position:relative;display:flex;flex-direction:column;gap:13px;margin:0}
+.gallery-card img{display:block;width:100%;height:250px;padding:8px;background:#fffaf2;object-fit:cover;border:1px solid rgba(62,48,41,.08);box-shadow:0 10px 25px rgba(62,48,41,.08),0 2px 5px rgba(62,48,41,.05);transition:transform .3s ease,box-shadow .3s ease}
+.gallery-card.wide{grid-column:span 2}.gallery-card.wide img{width:100%;height:300px;object-fit:cover}
+.gallery-card.tall{grid-row:span 2}.gallery-card.tall img{height:520px;object-fit:cover}
+.gallery-card:hover img{transform:translateY(-5px);box-shadow:0 18px 35px rgba(62,48,41,.13),0 4px 8px rgba(62,48,41,.07)}
+figcaption{padding:0 5px 8px;color:var(--muted);font-size:.75rem;line-height:1.5}figcaption span{margin-right:10px;color:var(--terracotta);font-weight:700}
+@media(max-width:700px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.gallery-card img{height:180px}.gallery-card.wide{grid-column:span 2}.gallery-card.wide img{height:230px}.gallery-card.tall{grid-row:span 2}.gallery-card.tall img{height:380px}}
+
+/* Give the third memory a little more visual presence. */
+.gallery-card:nth-child(3){width:calc(100% + 18px);z-index:1}
+@media(max-width:700px){.gallery-card:nth-child(3){width:100%}}
+
+.gallery-card:nth-child(3) img{height:340px}
+@media(max-width:700px){.gallery-card:nth-child(3) img{height:250px}}
+
+.gallery-card:nth-child(3) img{height:380px}
+@media(max-width:700px){.gallery-card:nth-child(3) img{height:280px}}
+
+.gallery-card:nth-child(3) img{height:410px}
+@media(max-width:700px){.gallery-card:nth-child(3) img{height:300px}}
+
+.gallery-card:nth-child(3) img{height:440px}
+@media(max-width:700px){.gallery-card:nth-child(3) img{height:320px}}
+
+.gallery-card:nth-child(4){transform:translateY(-20px)}
+@media(max-width:700px){.gallery-card:nth-child(4){transform:translateY(-10px)}}
+
+.gallery-card:nth-child(4){transform:translateY(-35px)}
+@media(max-width:700px){.gallery-card:nth-child(4){transform:translateY(-18px)}}
+
+.gallery-card:nth-child(4){transform:translateY(-70px)}
+@media(max-width:700px){.gallery-card:nth-child(4){transform:translateY(-35px)}}
+
+.gallery-card:nth-child(6) img{object-fit:cover;object-position:center 28%}
+@media(max-width:700px){.gallery-card:nth-child(6) img{object-position:center 25%}}
+
+/* Keep the hero caption in its own readable area below the photo. */
+.hero-photo{padding-bottom:64px;overflow:visible}.hero-photo .photo-note{left:22px;right:22px;bottom:14px;z-index:2;padding:4px 8px;background:rgba(226,209,186,.92);line-height:1.2}

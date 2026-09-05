@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Rumah Kita | Cerita Keluarga</title>
+  <meta name="description" content="Kumpulan cerita dan kenangan hangat keluarga kami.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#beranda"><span>✦</span> Rumah Kita</a>
+    <nav aria-label="Navigasi utama">
+      <a href="#cerita">Cerita</a>
+      <a href="#galeri">Galeri</a>
+      <a href="#pesan">Pesan</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="beranda">
+      <div class="hero-copy">
+        <p class="eyebrow">Album kecil, cinta yang besar</p>
+        <h1>Tempat pulang<br><em>selalu kita.</em></h1>
+        <p class="intro">Kumpulan tawa, perjalanan, dan momen sederhana yang membuat rumah terasa lebih hangat.</p>
+        <a class="button" href="#galeri">Lihat kenangan <span>↓</span></a>
+      </div>
+      <div class="hero-photo photo-frame">
+        <img src="foto-keluarga-utama.jpeg" alt="Foto keluarga utama">
+        <div class="photo-note">Kenangan terbaik<br>dibuat bersama</div>
+      </div>
+      <div class="sun" aria-hidden="true"></div>
+    </section>
+
+    <section class="quote-section" id="cerita">
+      <p class="eyebrow">Tentang kami</p>
+      <blockquote>“Dirumah marah terus, Lama ga ketemu juga kangen.”</blockquote>
+      <p class="quote-credit">— cerita dari rumah kecil kami</p>
+    </section>
+
+    <section class="gallery-section" id="galeri">
+      <div class="section-heading">
+        <div><p class="eyebrow">Potongan waktu</p><h2>Kenangan yang<br><em>kami simpan.</em></h2></div>
+        <p>Geser Pelan yaak.</p>
+      </div>
+      <div class="gallery">
+        <figure class="gallery-card tall"><img src="foto-1.jpeg" alt="Kenangan keluarga 1"><figcaption><span>01</span> Main Ke Sawah</figcaption></figure>
+        <figure class="gallery-card"><img src="foto-2.jpeg" alt="Kenangan keluarga 2"><figcaption><span>02</span> Ade Abang</figcaption></figure>
+        <figure class="gallery-card wide"><img src="foto-3.jpeg" alt="Kenangan keluarga 3"><figcaption><span>03</span> Ke Giant</figcaption></figure>
+        <figure class="gallery-card"><img src="foto-4.jpeg" alt="Kenangan keluarga 4"><figcaption><span>04</span> Jaman Rumah Sakit Jalan' Mulu</figcaption></figure>
+        <figure class="gallery-card tall"><img src="foto-5.jpeg" alt="Kenangan keluarga 5"><figcaption><span>05</span> Suami Istri Bahagia deh</figcaption></figure>
+        <figure class="gallery-card"><img src="foto-6.jpeg" alt="Kenangan keluarga 6"><figcaption><span>06</span> Bude ke Bogor</figcaption></figure>
+      </div>
+    </section>
+
+    <section class="message" id="pesan">
+      <div><p class="eyebrow">Untuk keluarga tercinta</p><h2>Hal-hal sederhana<br>yang berarti <em>segalanya.</em></h2></div>
+      <p>Gabut aja malem malem, lucu juga sihh ini, Mantapp</p>
+    </section>
+  </main>
+
+  <footer><span>✦ Rumah Kita</span><span>Dibuat dengan cinta · 2026</span></footer>
+  <div class="music-player" aria-label="Pemutar musik">
+    <button class="music-toggle" type="button" aria-label="Putar musik" aria-pressed="false">
+      <span class="music-icon" aria-hidden="true">▶</span>
+      <span class="music-status">Putar lagu</span>
+    </button>
+    <audio id="family-song" autoplay loop preload="auto">
+      <!-- Ganti nama file ini dengan lagu Anda, misalnya musik-keluarga.mp3 -->
+      <source src="lagu-keluarga.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <script>
+    const song = document.querySelector('#family-song');
+    const toggle = document.querySelector('.music-toggle');
+    const icon = document.querySelector('.music-icon');
+    const status = document.querySelector('.music-status');
+    let musicStarted = false;
+
+    function updateMusicButton(isPlaying) {
+      toggle.setAttribute('aria-pressed', String(isPlaying));
+      toggle.setAttribute('aria-label', isPlaying ? 'Jeda musik' : 'Putar musik');
+      icon.textContent = isPlaying ? '||' : '▶';
+      status.textContent = isPlaying ? 'Musik menyala' : 'Putar lagu';
+      toggle.classList.toggle('is-playing', isPlaying);
+    }
+
+    toggle.addEventListener('click', () => {
+      if (song.paused) {
+        song.play().then(() => {
+          musicStarted = true;
+          updateMusicButton(true);
+        }).catch(() => updateMusicButton(false));
+      } else {
+        song.pause();
+        musicStarted = true;
+        updateMusicButton(false);
+      }
+    });
+
+    song.addEventListener('play', () => updateMusicButton(true));
+    song.addEventListener('pause', () => updateMusicButton(false));
+
+    // Browser biasanya memblokir autoplay bersuara sampai ada interaksi pengguna.
+    function startMusicFromInteraction(event) {
+      if (event.target.closest('.music-toggle')) return;
+      if (musicStarted || !song.paused) return;
+      song.play().then(() => {
+        musicStarted = true;
+        updateMusicButton(true);
+        document.removeEventListener('click', startMusicFromInteraction);
+        document.removeEventListener('touchstart', startMusicFromInteraction);
+        document.removeEventListener('keydown', startMusicFromInteraction);
+      }).catch(() => {});
+    }
+
+    document.addEventListener('click', startMusicFromInteraction);
+    document.addEventListener('touchstart', startMusicFromInteraction, { passive: true });
+    document.addEventListener('keydown', startMusicFromInteraction);
+    song.play().then(() => {
+      musicStarted = true;
+      updateMusicButton(true);
+    }).catch(() => updateMusicButton(false));
+  </script>
+</body>
+</html>
